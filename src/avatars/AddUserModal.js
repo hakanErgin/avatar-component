@@ -6,25 +6,28 @@ import {
   DialogContentText,
   DialogTitle,
 } from '@material-ui/core';
-import MOCK_DATA from '../avatars/MOCK_DATA.json';
+import MOCK_DATA from '../avatars/MOCK_DATA';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 
 const AddUserModal = ({ open, handleClose, teamMembers, setTeamMembers }) => {
   const [memberToAdd, setMemberToAdd] = useState([]);
   const [error, setError] = useState(false);
+  const userOptions = MOCK_DATA.filter((user) => !teamMembers.includes(user));
 
   useEffect(() => {
     setError(false);
   }, [open]);
 
   function handleChange(e, value) {
-    setError(false);
-    console.log(value);
-    setMemberToAdd(value);
+    if (value != null) {
+      setError(false);
+      console.log(value);
+      setMemberToAdd(value);
+    }
   }
 
   function handleAdd() {
-    if (memberToAdd != '') {
+    if (memberToAdd != '' && !teamMembers.includes(memberToAdd)) {
       setTeamMembers([...teamMembers, memberToAdd]);
       setMemberToAdd('');
       handleClose();
@@ -43,7 +46,7 @@ const AddUserModal = ({ open, handleClose, teamMembers, setTeamMembers }) => {
         <DialogContentText>Type a name</DialogContentText>
         <Autocomplete
           autoSelect={true}
-          options={MOCK_DATA}
+          options={userOptions}
           getOptionLabel={(option) =>
             option.first_name + ' ' + option.last_name
           }

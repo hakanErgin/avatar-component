@@ -1,7 +1,7 @@
 import React from 'react';
 import AvatarComponent from '../avatars/AvatarComponent';
 import AddUserModal from '../avatars/AddUserModal';
-import MOCK_DATA from '../avatars/MOCK_DATA.json';
+import MOCK_DATA from '../avatars/MOCK_DATA';
 
 export default {
   title: 'AvatarStory',

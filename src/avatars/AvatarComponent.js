@@ -1,9 +1,8 @@
 import React from 'react';
 import AvatarGroup from '@material-ui/lab/AvatarGroup';
-import Avatar from '@material-ui/core/Avatar';
-import { withStyles, makeStyles } from '@material-ui/core/styles';
 import PersonAddIcon from '@material-ui/icons/PersonAdd';
-import Tooltip from '@material-ui/core/Tooltip';
+import { withStyles, makeStyles } from '@material-ui/core/styles';
+import { Tooltip, Avatar } from '@material-ui/core/';
 
 const useStyles = makeStyles({
   root: {
