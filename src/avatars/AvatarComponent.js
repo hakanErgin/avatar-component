@@ -7,18 +7,15 @@ import PersonAddIcon from '@material-ui/icons/PersonAdd';
 
 const useStyles = makeStyles({
   root: {
+    // '&:active': { border: 'blue' },
     '&:hover': {
-      // backgroundColor: 'rgb(0,0,0.5)',
+      filter: 'brightness(85%) saturate(140%)',
       transition: '0.2s',
       zIndex: '2 !important',
       cursor: 'pointer',
     },
   },
 });
-
-const StyledAvatar = withStyles({
-  root: { background: 'white' },
-})(Avatar);
 
 const StyledAvatarGroup = withStyles({
   root: {
