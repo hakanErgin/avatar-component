@@ -9,7 +9,7 @@ export default {
 };
 
 export const AvatarStory = () => {
-  const [teamMembers, setTeamMembers] = React.useState([]);
+  const [teamMembers, setTeamMembers] = React.useState([MOCK_DATA[0]]);
   const [modalIsOpen, setIsOpen] = React.useState(false);
 
   function openModal() {
@@ -23,6 +23,7 @@ export const AvatarStory = () => {
     <AddUserModal
       open={modalIsOpen}
       handleClose={closeModal}
+      teamMembers={teamMembers}
       setTeamMembers={setTeamMembers}
     />
   );

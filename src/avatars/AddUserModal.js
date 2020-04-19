@@ -10,17 +10,17 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import MOCK_DATA from '../avatars/MOCK_DATA.json';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 
-const AddUserModal = ({ open, handleClose, setTeamMembers }) => {
+const AddUserModal = ({ open, handleClose, teamMembers, setTeamMembers }) => {
   const [memberToAdd, setMemberToAdd] = React.useState([]);
 
-  function handleChange(e) {
-    console.log('event', e.target);
+  function handleChange(e, value) {
+    console.log(value);
 
-    setMemberToAdd(e.target.value);
+    setMemberToAdd(value);
   }
 
   function handleAdd() {
-    setTeamMembers(memberToAdd);
+    setTeamMembers([...teamMembers, memberToAdd]);
   }
 
   return (
@@ -29,7 +29,6 @@ const AddUserModal = ({ open, handleClose, setTeamMembers }) => {
       onClose={handleClose}
       aria-labelledby="form-dialog-title"
     >
-      {/* <form onSubmit={}> */}
       <DialogTitle id="form-dialog-title">Subscribe</DialogTitle>
       <DialogContent>
         <DialogContentText>Add new member to your team</DialogContentText>
@@ -39,7 +38,6 @@ const AddUserModal = ({ open, handleClose, setTeamMembers }) => {
           getOptionLabel={(option) =>
             option.first_name + ' ' + option.last_name
           }
-          getOptionSelected={(option, event) => console.log(event)}
           onChange={handleChange}
           renderInput={(params) => {
             return (
@@ -61,7 +59,6 @@ const AddUserModal = ({ open, handleClose, setTeamMembers }) => {
           Add
         </Button>
       </DialogActions>
-      {/* </form> */}
     </Dialog>
   );
 };
