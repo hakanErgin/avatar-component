@@ -1,37 +1,46 @@
-import React from 'react';
-import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
-import Input from '@material-ui/core/Input';
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
+import React, { useState, useEffect } from 'react';
+import { Button, TextField, Dialog } from '@material-ui/core';
+import {
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+} from '@material-ui/core';
 import MOCK_DATA from '../avatars/MOCK_DATA.json';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 
 const AddUserModal = ({ open, handleClose, teamMembers, setTeamMembers }) => {
-  const [memberToAdd, setMemberToAdd] = React.useState([]);
+  const [memberToAdd, setMemberToAdd] = useState([]);
+  const [error, setError] = useState(false);
+
+  useEffect(() => {
+    setError(false);
+  }, [open]);
 
   function handleChange(e, value) {
+    setError(false);
     console.log(value);
-
     setMemberToAdd(value);
   }
 
   function handleAdd() {
-    setTeamMembers([...teamMembers, memberToAdd]);
+    if (memberToAdd != '') {
+      setTeamMembers([...teamMembers, memberToAdd]);
+      setMemberToAdd('');
+      handleClose();
+    } else setError(true);
   }
 
   return (
     <Dialog
+      fullWidth
       open={open}
       onClose={handleClose}
       aria-labelledby="form-dialog-title"
     >
-      <DialogTitle id="form-dialog-title">Subscribe</DialogTitle>
+      <DialogTitle id="form-dialog-title">Add People</DialogTitle>
       <DialogContent>
-        <DialogContentText>Add new member to your team</DialogContentText>
+        <DialogContentText>Type a name</DialogContentText>
         <Autocomplete
           autoSelect={true}
           options={MOCK_DATA}
@@ -43,9 +52,9 @@ const AddUserModal = ({ open, handleClose, teamMembers, setTeamMembers }) => {
             return (
               <TextField
                 {...params}
-                label="Combo box"
+                label="Enter text"
                 variant="outlined"
-                onChange={handleChange}
+                error={error}
               />
             );
           }}

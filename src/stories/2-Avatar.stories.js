@@ -1,7 +1,7 @@
 import React from 'react';
 import AvatarComponent from '../avatars/AvatarComponent';
-import MOCK_DATA from '../avatars/MOCK_DATA.json';
 import AddUserModal from '../avatars/AddUserModal';
+import MOCK_DATA from '../avatars/MOCK_DATA.json';
 
 export default {
   title: 'AvatarStory',
@@ -32,11 +32,13 @@ export const AvatarStory = () => {
   );
 
   return (
-    <AvatarComponent
-      openModal={openModal}
-      modalIsOpen={modalIsOpen}
-      teamMembers={teamMembers}
-      modal={modal}
-    />
+    <div style={{ margin: '20px' }}>
+      <AvatarComponent
+        openModal={openModal}
+        modalIsOpen={modalIsOpen}
+        teamMembers={teamMembers}
+        modal={modal}
+      />
+    </div>
   );
 };
