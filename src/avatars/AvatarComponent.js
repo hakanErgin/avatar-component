@@ -50,7 +50,11 @@ const AvatarComponent = (props) => {
           ))}
         </StyledAvatarGroup>
         <Tooltip title="Add new...">
-          <Avatar classes={{ root: classes.root }} onClick={openModal}>
+          <Avatar
+            aria-label="add"
+            classes={{ root: classes.root }}
+            onClick={openModal}
+          >
             <PersonAddIcon />
           </Avatar>
         </Tooltip>
