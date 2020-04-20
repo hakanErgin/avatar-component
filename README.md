@@ -1,6 +1,6 @@
-Avatar.stories component
+# Avatar.stories component
 
-To run: npm run storybook
+To run: ```npm run storybook```
 
 AvatarComponent renders a list of team members from the mocked database (a JSON file). It initializes with two members.
 
