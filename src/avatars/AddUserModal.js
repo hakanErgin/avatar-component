@@ -12,27 +12,29 @@ import Autocomplete from '@material-ui/lab/Autocomplete';
 const AddUserModal = ({ open, handleClose, teamMembers, setTeamMembers }) => {
   const [memberToAdd, setMemberToAdd] = useState([]);
   const [error, setError] = useState(false);
-  const userOptions = MOCK_DATA.filter((user) => !teamMembers.includes(user));
 
+  // Disable error state when modal opens
   useEffect(() => {
     setError(false);
   }, [open]);
 
+  // Handlers
   function handleChange(e, value) {
-    if (value != null) {
+    if (value != null && value != '') {
       setError(false);
-      console.log(value);
       setMemberToAdd(value);
-    }
+    } else setError(true);
   }
-
   function handleAdd() {
-    if (memberToAdd != '' && !teamMembers.includes(memberToAdd)) {
+    if (memberToAdd != '' && !error) {
       setTeamMembers([...teamMembers, memberToAdd]);
       setMemberToAdd('');
       handleClose();
     } else setError(true);
   }
+
+  // Select options for adding to team
+  const userOptions = MOCK_DATA.filter((user) => !teamMembers.includes(user));
 
   return (
     <Dialog
